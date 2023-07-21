@@ -1,0 +1,32 @@
+
+docker run --rm -P -p 127.0.0.1:5432:5432 -e PGDATA=/var/lib/postgresql/pgdata -e POSTGRES_USER=sokhna -e POSTGRES_PASSWORD=Ahmad1417 --name postgres postgres:alpine
+
+docker exec -it postgres bash
+
+You can now start the database server using:
+
+    pg_ctl -D /var/lib/postgresql/pgdata -l logfile start
+
+    https://www.hostinger.com/tutorials/how-to-install-postgresql-on-ubuntu/
+
+    Option 1 - Installation From APT Repository
+
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get -y install postgresql
+
+sudo -u postgres psql
+SELECT version();
+
+create user sokhna with password 'Ahmad1417'
+ALTER USER sokhna WITH SUPERUSER;
+
+#Then, change the password:
+
+ALTER USER postgres PASSWORD 'NewPassw0rd';
+\du #list user and their in postgres psql
+\l #list db

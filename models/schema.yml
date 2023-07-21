@@ -1,0 +1,32 @@
+
+version: 2
+
+models:
+  - name: tracks
+    description: "table in dbt_tp database"
+    columns:
+      - name: TrackId
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: AlbumId
+        tests:
+          - not_null
+      - name: MediaTypeId
+        tests:
+          - not_null
+      - name: GenreId
+        tests:
+          - not_null
+
+sources:
+  - name: chinook
+    database: dbt_tp 
+    schema: public 
+    tables:
+      - name: tracks
+      - name: artists
+      - name: albums
+      - name: invoices
+      - name: invoice_items
